@@ -20,6 +20,9 @@
             },
             "development": {
               "tsConfig": "projects/mathjax-lib/tsconfig.lib.json"
+            },
+            "dev": {
+              "tsConfig": "projects/mathjax-lib/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -33,7 +36,117 @@
           }
         }
       }
+    },
+    "testMathjax": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        },
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "projects/test-mathjax",
+      "sourceRoot": "projects/test-mathjax/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/testMathjax",
+            "index": "projects/test-mathjax/src/index.html",
+            "main": "projects/test-mathjax/src/main.ts",
+            "polyfills": "projects/test-mathjax/src/polyfills.ts",
+            "tsConfig": "projects/test-mathjax/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "projects/test-mathjax/src/favicon.ico",
+              "projects/test-mathjax/src/assets"
+            ],
+            "styles": ["projects/test-mathjax/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "projects/test-mathjax/src/environments/environment.ts",
+                  "with": "projects/test-mathjax/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            },
+            "dev": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "dev"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "testMathjax:build:production"
+            },
+            "development": {
+              "browserTarget": "testMathjax:build:development"
+            },
+            "dev": {
+              "browserTarget": "testMathjax:build:dev"
+            }
+          },
+          "defaultConfiguration": "dev"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "testMathjax:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/test-mathjax/src/test.ts",
+            "polyfills": "projects/test-mathjax/src/polyfills.ts",
+            "tsConfig": "projects/test-mathjax/tsconfig.spec.json",
+            "karmaConfig": "projects/test-mathjax/karma.conf.js",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "projects/test-mathjax/src/favicon.ico",
+              "projects/test-mathjax/src/assets"
+            ],
+            "styles": ["projects/test-mathjax/src/styles.scss"],
+            "scripts": []
+          }
+        }
+      }
     }
   },
-  "defaultProject": "mathjax-lib"
+  "defaultProject": "testMathjax"
 }

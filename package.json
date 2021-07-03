@@ -4,9 +4,14 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "build-lib": "npm install && ng build mathjax-lib",
+    "build": "run-s -n \"ng build mathjax-lib\" \"ng build -- --output-hashing=all -c={1}\" --",
+    "clean": "rimraf dist",
+    "wth:c-lib": "ng build mathjax-lib --watch",
+    "srv-app": "wait-on dist/mathjax-lib/public-api.d.ts && run-p -r -n \"ng s -- -c={1} --port 3300 -o\" --",
+    "dev": "npm run clean && run-p -r -n \"wth:*\" \"srv-app -- {1}\" --"
   },
   "private": true,
   "dependencies": {
@@ -36,6 +41,8 @@
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "^1.5.0",
     "ng-packagr": "^12.1.0",
-    "typescript": "~4.3.2"
+    "npm-run-all": "^4.1.5",
+    "typescript": "~4.3.2",
+    "wait-on": "^6.0.0"
   }
 }
