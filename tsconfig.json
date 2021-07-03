@@ -10,10 +10,7 @@
     "noFallthroughCasesInSwitch": true,
     "sourceMap": true,
     "paths": {
-      "mathjax-lib": [
-        "dist/mathjax-lib/mathjax-lib",
-        "dist/mathjax-lib"
-      ]
+      "mathjax-lib": ["dist/mathjax-lib/mathjax-lib", "dist/mathjax-lib"]
     },
     "declaration": false,
     "downlevelIteration": true,
@@ -22,10 +19,8 @@
     "importHelpers": true,
     "target": "es2017",
     "module": "es2020",
-    "lib": [
-      "es2018",
-      "dom"
-    ]
+    "lib": ["es2018", "dom"],
+    "esModuleInterop": true
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
