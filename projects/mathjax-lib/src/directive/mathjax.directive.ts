@@ -3,17 +3,14 @@ import {
   ElementRef,
   Input,
   OnChanges,
-  OnDestroy,
-  OnInit,
   SimpleChanges,
-  AfterViewInit,
 } from '@angular/core';
-import { MathjaxContent, isMathJax } from './mathjax.content';
+import { MathjaxContent, isMathjax } from './models';
 
 @Directive({
   selector: 'mathjax,[mathjax]',
 })
-export class MathjaxDirective implements OnInit, AfterViewInit, OnChanges {
+export class MathjaxDirective implements OnChanges {
   //
   private mathJaxExpressions?: MathjaxContent | string;
   //
@@ -37,10 +34,6 @@ export class MathjaxDirective implements OnInit, AfterViewInit, OnChanges {
     this.element = el.nativeElement;
   }
 
-  ngAfterViewInit(): void {}
-
-  ngOnInit(): void {}
-
   ngOnChanges(changes: SimpleChanges): void {
     const expressions = changes.mathjax;
     if (
@@ -50,10 +43,8 @@ export class MathjaxDirective implements OnInit, AfterViewInit, OnChanges {
       return;
     }
     //
-    if ((expressions.currentValue + '')?.match(isMathJax)) {
-      //console.log('***', expressions.currentValue + '');
+    if ((expressions.currentValue + '')?.match(isMathjax)) {
       const filteredVal = this.fixMathjaxBugs(expressions.currentValue + '');
-      //console.log('>>', filteredVal);
       this.typeset(() => {
         this.element.innerHTML = `<div>${filteredVal}</div>`;
       });

@@ -1,34 +1,36 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { MathjaxDirective } from './mathjax.directive';
-import { MathJaxConfig, mathjax_url } from './mathjax.content';
+import { MathjaxDefaultConfig, mathjax_url, RootMathjaxConfig } from './models';
 
 @NgModule({
   declarations: [MathjaxDirective],
   exports: [MathjaxDirective],
 })
 export class MathjaxModule {
-  constructor() {
+  constructor(moduleConfig: RootMathjaxConfig) {
     //
     //
     const config = document.createElement('script') as HTMLScriptElement;
-    //config.type = 'text/x-mathjax-config';
-    config.text = `MathJax = ${JSON.stringify(MathJaxConfig)}`;
+    const providConfig = {
+      ...MathjaxDefaultConfig,
+      ...(moduleConfig?.config ?? {}),
+    };
+    config.text = `MathJax = ${JSON.stringify(providConfig)}`;
     //
-    //document.getElementsByTagName('head')[0].appendChild(config);
     //
     const script = document.createElement('script') as HTMLScriptElement;
     script.type = 'text/javascript';
-    script.src = mathjax_url;
+    script.src = moduleConfig?.src ?? mathjax_url;
     script.async = true;
     //
-    //document.getElementsByTagName('head')[0].appendChild(script);
   }
 
-  public static forRoot(): ModuleWithProviders<MathjaxModule> {
-    //console.log(`for root`);
+  public static forRoot(
+    config?: RootMathjaxConfig
+  ): ModuleWithProviders<MathjaxModule> {
     return {
       ngModule: MathjaxModule,
-      providers: [],
+      providers: [{ provide: RootMathjaxConfig, useValue: config ?? {} }],
     };
   }
   public static forChild() {

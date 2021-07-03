@@ -1,6 +1,6 @@
 {
   "name": "mathjax-angular",
-  "version": "0.0.1",
+  "version": "0.5.0",
   "peerDependencies": {
     "@angular/common": "^12.1.1",
     "@angular/core": "^12.1.1"
@@ -14,5 +14,10 @@
     "email": "sajeevkumar@gmail.com",
     "url": "https://www.linkedin.com/in/sajivkumar"
   },
-  "keywords": ["angular", "mathjax", "ngrx", "mathjax3"]
+  "keywords": [
+    "angular",
+    "mathjax",
+    "ngrx",
+    "mathjax3"
+  ]
 }
