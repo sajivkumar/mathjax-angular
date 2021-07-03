@@ -7,14 +7,9 @@
     "declaration": true,
     "declarationMap": true,
     "inlineSources": true,
-    "types": [],
-    "lib": [
-      "dom",
-      "es2018"
-    ]
+    // "types": [],
+    "typeRoots": ["../../types", "node_modules/@types"],
+    "lib": ["dom", "es2018"]
   },
-  "exclude": [
-    "src/test.ts",
-    "**/*.spec.ts"
-  ]
+  "exclude": ["src/test.ts", "**/*.spec.ts", "types"]
 }
