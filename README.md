@@ -46,10 +46,13 @@ When importing in the **root** module, the module should be configured
 with *.forRoot* method.
 
 ```typescript
-import {NgModule} from '@angular/core';
-import {AppComponent} from './src/app/app.component';
+import { NgModule } from '@angular/core';
+import { AppComponent } from './src/app/app.component';
+
+/*Import*/
 import { MathjaxModule } from 'mathjax-angular';
 
+/*Configuration*/
 @NgModule({
   declarations: [
     AppComponent
