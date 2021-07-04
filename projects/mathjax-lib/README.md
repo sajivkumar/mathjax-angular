@@ -1,7 +1,7 @@
 # mathjax-angular 
 This plugins implements the browser version of [Mathjax v3][1] into [Angular][2]
 
-***Note***:This library was generated with [Angular CLI][8] version 12.1.1.
+***Note***:This library was generated with [Angular CLI][8] version 12.
 ## Feature
 
 This library helps you implement the version 3 of Mathjax into any of your angular web application.
