@@ -2,9 +2,7 @@
 This plugins implements the browser version of [Mathjax v3][1] into [Angular][2]
 ## Feature
 
-- Dynamically load MathJax library to your web application.
-- Simple typesetting using Angular directive.
-- Dynamic typesetting using expressions.
+This library helps you implement the version 3 of Mathjax into any of your web application.
 
 ## Install
 
@@ -21,14 +19,24 @@ yarn add mathjax-angular
 ## Configure the module
 
 Load the module in the `@NgModule` class of the application. You need
-to pass a `ModuleConfiguration` instance to the `config` method to
+to pass a `RootMathjaxConfig` instance to the `config` method to
 configure the module.
 
 ### Example
 
-We provide a premade exaple with the library itself, You can see the example [here][3], or alternatively run it locally by cloning the [repository][4] and running:
+We provide a premade example with the library itself, You can see the example [here][3], or alternatively run it locally by cloning the [repository][4] and running.
+
+To do that first install the requirements:
 ```
-npm install&&npm run dev
+npm install
+```
+Then either run it in production:
+```
+npm run dev production
+```
+or run it in dev:
+```
+npm run dev
 ```
 
 ### Usage
@@ -38,20 +46,37 @@ with *.forRoot* method.
 ```typescript
 import {NgModule} from '@angular/core';
 import {AppComponent} from './src/app/app.component';
-import {MathJaxModule} from './src/app/math-jax/math-jax.module';
+import { MathjaxModule } from 'mathjax-angular';
 
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
-    MathJaxModule.forRoot() //Pre configured
+    MathJaxModule.forRoot(/*Optional Config*/)
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
 ```
+You can optionally pass config. for this refer to [majax configuration guide][5]
+
+Current configuration defaults to:
+```typescript
+{ 
+  config: { 
+    loader: { load: ['output/svg', '[tex]/require', '[tex]/ams'], 
+  }, 
+  tex: { 
+    inlineMath: [['$', '$']],
+    packages: ['base', 'require', 'ams'], }, 
+    svg: { fontCache: 'global' }}, 
+    src: 'https://cdn.jsdelivr.net/npm/mathjax@3.0.0/es5/startup.js', 
+  }
+```
+For *"config"* field refer [this][6].
+For *"src"* field refer [CDN][7].
 
 When importing in a **child** module, the module must be configured to
 re-use the same module instance as the root module. So simply
@@ -73,65 +98,9 @@ Add the `mathjax` directive to elements which you want to apply
 MathJax typesetting on load.
 
 ```html
-<div>normal text</div>
-
-<div mathjax>mathjax typesetting
-$$
-x = 1
-$$
-
-\( y = 2 \)
-</div>
+<div [mathjax]="content"></div> 
+// in your ts component content = "$x = {-b \\pm \\sqrt{b^2-4ac} \\over 2a}$"
 ```
-
-## Typesetting using expression
-
-The Jax elements will be updated when the corresponding expression
-value is changed. The correspondence principle between the expression
-and the Jax element is by *order*.
-
-```html
-<div [mathjax]="[exp1, exp2]">
-
-MathJax Expression 1: \( {{ '{}' }} \)
-MathJax Expression 2: \( {{ '{}' }} \)
-</div>
-```
-
-Insert the `{}` to the place you want, then surround it with a pair of
-MathJax delimiter.
-
-You need to escape it in Angular template.
-
-## Manually trigger MathJax typesetting
-
-You can use the `MathJaxDirective.MathJaxTypeset()` method to trigger
-the typesetting when you want. The steps are:
-
-- Use *ViewChild* and its *read* property to get a reference to the
-  `MathJaxDirective` instance
-- Call `instance.MathJaxTypeset()`
-
-## Adding a callback 
-
-You can specify a callback function to be called when the rendering is finished
-
-*component.ts*
-```component.ts
-export class yourComponent implements OnInit {
-  callback = function () {
-      console.log("Callback function called!")
-    }
-}
-```
-
-*template or html*
-```
-<div mathjax (mathjax-callback)="callback()">
-    \\( E = mc^2 \\)
-</div>
-```
-
 ## Info and Help
 
 For more info and help with the mathjax library refer to [their site][1].
@@ -142,3 +111,6 @@ None
 [2]: https://angular.io/
 [3]: https://github.com/sajivkumar/mathjax-angular/tree/main/projects/example
 [4]: https://github.com/sajivkumar/mathjax-angular.git
+[5]: http://docs.mathjax.org/en/latest/web/configuration.html
+[6]: http://docs.mathjax.org/en/latest/web/configuration.html#configuring-and-loading-mathjax
+[7]:https://cdnjs.com/libraries/mathjax
