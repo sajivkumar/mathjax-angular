@@ -10,6 +10,7 @@
   "bugs": {
     "url": "https://github.com/sajivkumar/mathjax-angular/issues"
   },
+  "license": "MIT",
   "peerDependencies": {
     "@angular/common": "^12.1.1",
     "@angular/core": "^12.1.1"
