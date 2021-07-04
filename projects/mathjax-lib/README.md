@@ -66,16 +66,19 @@ You can optionally pass config. for this refer to [majax configuration guide][5]
 
 Current configuration defaults to:
 ```typescript
-{ 
-  config: { 
-    loader: { load: ['output/svg', '[tex]/require', '[tex]/ams'], 
-  }, 
-  tex: { 
-    inlineMath: [['$', '$']],
-    packages: ['base', 'require', 'ams'], }, 
-    svg: { fontCache: 'global' }}, 
-    src: 'https://cdn.jsdelivr.net/npm/mathjax@3.0.0/es5/startup.js', 
-  }
+{
+  "config": {
+    "loader": {
+      "load": ["output/svg", "[tex]/require", "[tex]/ams"]
+    },
+    "tex": {
+      "inlineMath": [["$", "$"]],
+      "packages": ["base", "require", "ams"]
+    },
+    "svg": { "fontCache": "global" }
+  },
+  "src": "https://cdn.jsdelivr.net/npm/mathjax@3.0.0/es5/startup.js"
+}
 ```
 For *"config"* field refer [this][6].
 For *"src"* field refer [CDN][7].
@@ -101,13 +104,15 @@ MathJax typesetting on load.
 
 ```html
 <div [mathjax]="content"></div> 
-// in your ts component content = "$x = {-b \\pm \\sqrt{b^2-4ac} \\over 2a}$"
 ```
+In your ts component content = "`$x = {-b \\pm \\sqrt{b^2-4ac} \\over 2a}$`"
+
+## Progress
+  - [x] Creation of Library :tada:
+  - [x] Creation of this Readme :tada:
 ## Info and Help
 
 For more info and help with the mathjax library refer to [their site][1].
-## TODO
-None
 
 [1]: https://docs.mathjax.org/en/latest/
 [2]: https://angular.io/
