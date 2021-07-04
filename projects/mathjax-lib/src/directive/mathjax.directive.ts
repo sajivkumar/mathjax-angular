@@ -5,7 +5,8 @@ import {
   OnChanges,
   SimpleChanges,
 } from '@angular/core';
-import { MathjaxContent, isMathjax } from './models';
+import { fixMathjaxBugs, getMathjaxContent, isMathjax } from '../utils';
+import { MathjaxContent } from '../models';
 
 @Directive({
   selector: 'mathjax,[mathjax]',
@@ -35,47 +36,16 @@ export class MathjaxDirective implements OnChanges {
       return;
     }
     //
-    const value = this.getMathjaxContent(expressions.currentValue) + '';
+    const value = getMathjaxContent(expressions.currentValue) + '';
     //
-    if (value?.match(isMathjax)) {
-      const filteredVal = this.fixMathjaxBugs(value);
+    if (isMathjax(value)) {
+      const filteredVal = fixMathjaxBugs(value);
       this.typeset(() => {
         this.element.innerHTML = `<div class='jax-process'>${filteredVal}</div>`;
       });
     } else {
       this.element.innerHTML = value;
     }
-  }
-
-  /**
-   * find and return mathjax string from input
-   * @param expressions
-   * @returns mathjax string
-   */
-  private getMathjaxContent(expressions: MathjaxContent | string): string {
-    if (!expressions) return '';
-    else if ('string' === typeof expressions) return expressions as string;
-    else return expressions.latex ?? expressions.mathml ?? '';
-  }
-
-  /**
-   * used to fix few issues with mathjax string in angular
-   * @param  {string} jax mathjax string
-   * @returns {string} fixed string
-   */
-  private fixMathjaxBugs(jax: string): string {
-    return (
-      jax
-        //line break error
-        .replace(/<br \/>/gi, '<br/> ')
-        //automatic breakline
-        .replace(/[$]([\s\S]+?)[$]/gi, (m, p: string, o, s) => {
-          //return /s/gi.test(p)
-          return p.includes('\\\\') && !p.includes('\\begin')
-            ? `$\\begin{align*}${p}\\end{align*}$`
-            : `$${p}$`;
-        })
-    );
   }
 
   private typeset(code: () => void) {
