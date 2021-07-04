@@ -1,6 +1,10 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { MathjaxDirective } from './mathjax.directive';
-import { MathjaxDefaultConfig, mathjax_url, RootMathjaxConfig } from './models';
+import {
+  MathjaxDefaultConfig,
+  mathjax_url,
+  RootMathjaxConfig,
+} from '../models';
 
 @NgModule({
   declarations: [MathjaxDirective],
