@@ -1,3 +1,7 @@
+//
+import { MathjaxModule } from './mathjax.module';
+//
 export * from './mathjax.directive';
 export * from './mathjax.module';
-export * from './models';
+//
+export default MathjaxModule;
