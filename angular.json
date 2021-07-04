@@ -39,24 +39,24 @@
           "strict": true
         }
       },
-      "root": "projects/test-mathjax",
-      "sourceRoot": "projects/test-mathjax/src",
+      "root": "projects/example",
+      "sourceRoot": "projects/example/src",
       "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist/testMathjax",
-            "index": "projects/test-mathjax/src/index.html",
-            "main": "projects/test-mathjax/src/main.ts",
-            "polyfills": "projects/test-mathjax/src/polyfills.ts",
-            "tsConfig": "projects/test-mathjax/tsconfig.app.json",
+            "index": "projects/example/src/index.html",
+            "main": "projects/example/src/main.ts",
+            "polyfills": "projects/example/src/polyfills.ts",
+            "tsConfig": "projects/example/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              "projects/test-mathjax/src/favicon.ico",
-              "projects/test-mathjax/src/assets"
+              "projects/example/src/favicon.ico",
+              "projects/example/src/assets"
             ],
-            "styles": ["projects/test-mathjax/src/styles.scss"],
+            "styles": ["projects/example/src/styles.scss"],
             "scripts": []
           },
           "configurations": {
@@ -75,8 +75,8 @@
               ],
               "fileReplacements": [
                 {
-                  "replace": "projects/test-mathjax/src/environments/environment.ts",
-                  "with": "projects/test-mathjax/src/environments/environment.prod.ts"
+                  "replace": "projects/example/src/environments/environment.ts",
+                  "with": "projects/example/src/environments/environment.prod.ts"
                 }
               ],
               "outputHashing": "all"

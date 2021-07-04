@@ -46,7 +46,7 @@
   "jest": {
     "preset": "jest-preset-angular",
     "setupFilesAfterEnv": [
-      "./projects/test-mathjax/setup-jest.ts",
+      "./projects/example/setup-jest.ts",
       "./projects/mathjax-lib/setup-jest.ts"
     ],
     "testPathIgnorePatterns": [
@@ -55,7 +55,7 @@
     ],
     "globals": {
       "ts-jest": {
-        "tsConfig": "./projects/test-mathjax/tsconfig.spec.json",
+        "tsConfig": "./projects/example/tsconfig.spec.json",
         "stringifyContentPathRegex": "\\.html$"
       }
     }
