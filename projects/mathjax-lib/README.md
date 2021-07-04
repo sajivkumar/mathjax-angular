@@ -30,15 +30,15 @@ We provide a premade example with the library itself, You can see the example [h
 
 To do that first install the requirements:
 ```
-npm install
+npm install (or) yarn
 ```
 Then either run it in production:
 ```
-npm run dev production
+npm run dev production (or) yarn dev production
 ```
 or run it in dev:
 ```
-npm run dev
+npm run dev (or) yarn dev
 ```
 
 ### Usage
@@ -80,16 +80,15 @@ Current configuration defaults to:
   "src": "https://cdn.jsdelivr.net/npm/mathjax@3.0.0/es5/startup.js"
 }
 ```
-For *"config"* field refer [this][6].
-For *"src"* field refer [CDN][7].
+- For ***config*** field refer [this][6].
+- For ***src*** field refer [CDN][7].
 
 When importing in a **child** module, the module must be configured to
 re-use the same module instance as the root module. So simply
 configure the module with the *.forChild* method.
 
 ```typescript
-import {MathJaxModule} from './src/app/math-jax/math-jax.module';
-
+import { MathjaxModule } from 'mathjax-angular';
 ...
 imports: [
   MathJaxModule.forChild()
@@ -105,7 +104,10 @@ MathJax typesetting on load.
 ```html
 <div [mathjax]="content"></div> 
 ```
-In your ts component content = "`$x = {-b \\pm \\sqrt{b^2-4ac} \\over 2a}$`"
+In your ts component 
+```typescript
+content = "$x = {-b \\pm \\sqrt{b^2-4ac} \\over 2a}$"
+```
 
 ## Info and Help
 

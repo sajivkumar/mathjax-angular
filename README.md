@@ -1,27 +1,123 @@
-# MathjaxAngular
+# mathjax-angular 
+This plugins implements the browser version of [Mathjax v3][1] into [Angular][2]
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.1.1.
+***Note***:This library was generated with [Angular CLI][8] version 12.
+## Feature
 
-## Development server
+This library helps you implement the version 3 of Mathjax into any of your angular web application.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Install
+Below are the steps you need to use this library.
+NPM:
+```
+npm install mathjax-angular
+```
 
-## Code scaffolding
+Yarn:
+```
+yarn add mathjax-angular
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Configure the module
 
-## Build
+Load the module in the `@NgModule` class of the application. You need
+to pass a `RootMathjaxConfig` instance to the `config` method to
+configure the module.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+### Example
 
-## Running unit tests
+We provide a premade example with the library itself, You can see the example [here][3], or alternatively run it locally by cloning the [repository][4] and running.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+To do that first install the requirements:
+```
+npm install (or) yarn
+```
+Then either run it in production:
+```
+npm run dev production (or) yarn dev production
+```
+or run it in dev:
+```
+npm run dev (or) yarn dev
+```
 
-## Running end-to-end tests
+### Usage
+When importing in the **root** module, the module should be configured
+with *.forRoot* method.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+```typescript
+import {NgModule} from '@angular/core';
+import {AppComponent} from './src/app/app.component';
+import { MathjaxModule } from 'mathjax-angular';
 
-## Further help
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    MathJaxModule.forRoot(/*Optional Config*/)
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+```
+You can optionally pass config. for this refer to [majax configuration guide][5]
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Current configuration defaults to:
+```typescript
+{
+  "config": {
+    "loader": {
+      "load": ["output/svg", "[tex]/require", "[tex]/ams"]
+    },
+    "tex": {
+      "inlineMath": [["$", "$"]],
+      "packages": ["base", "require", "ams"]
+    },
+    "svg": { "fontCache": "global" }
+  },
+  "src": "https://cdn.jsdelivr.net/npm/mathjax@3.0.0/es5/startup.js"
+}
+```
+- For ***config*** field refer [this][6].
+- For ***src*** field refer [CDN][7].
+
+When importing in a **child** module, the module must be configured to
+re-use the same module instance as the root module. So simply
+configure the module with the *.forChild* method.
+
+```typescript
+import { MathjaxModule } from 'mathjax-angular';
+...
+imports: [
+  MathJaxModule.forChild()
+]
+...
+```
+
+## Typeset an element
+
+Add the `mathjax` directive to elements which you want to apply
+MathJax typesetting on load.
+
+```html
+<div [mathjax]="content"></div> 
+```
+In your ts component 
+```typescript
+content = "$x = {-b \\pm \\sqrt{b^2-4ac} \\over 2a}$"
+```
+
+## Info and Help
+
+For more info and help with the mathjax library refer to [their site][1].
+
+[1]: https://docs.mathjax.org/en/latest/
+[2]: https://angular.io/
+[3]: https://github.com/sajivkumar/mathjax-angular/tree/main/projects/example
+[4]: https://github.com/sajivkumar/mathjax-angular.git
+[5]: http://docs.mathjax.org/en/latest/web/configuration.html
+[6]: http://docs.mathjax.org/en/latest/web/configuration.html#configuring-and-loading-mathjax
+[7]:https://cdnjs.com/libraries/mathjax
+[8]:https://github.com/angular/angular-cli
