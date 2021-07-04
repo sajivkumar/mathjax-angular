@@ -7,8 +7,28 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   //
-  content = `$ x = 1 $`;
-  content2 = `$E = mc^2$`;
+  content = {
+    latex: 'When $a \\ne 0$, there are two solutions to $\\frac{5}{9}$',
+  };
+  content2 = {
+    mathml: `<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <mrow>
+    <mover>
+      <munder>
+        <mo>∫</mo>
+        <mn>0</mn>
+      </munder>
+      <mi>∞</mi>
+    </mover>
+    <mtext> versus </mtext>
+    <munderover>
+      <mo>∫</mo>
+      <mn>0</mn>
+      <mi>∞</mi>
+    </munderover>
+  </mrow>
+</math>`,
+  };
   content3 = `$x = {-b \\pm \\sqrt{b^2-4ac} \\over 2a}$`;
   content4 = `$\\begin{align}
   \\dot{x} & = \\sigma(y-x) \\\\
