@@ -14,13 +14,14 @@ export const mathjax_url =
 
 export const MathjaxDefaultConfig = {
   loader: {
-    load: ['output/svg', '[tex]/require'],
+    load: ['output/svg', '[tex]/require', '[tex]/ams'],
   },
   tex: {
     inlineMath: [['$', '$']],
-    displayMath: [['$$', '$$']],
-    packages: ['base', 'require'],
+    //displayMath: [['$$', '$$']],
+    packages: ['base', 'require', 'ams'],
   },
+  svg: { fontCache: 'global' },
 };
 //
 export class RootMathjaxConfig {

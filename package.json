@@ -1,13 +1,13 @@
 {
   "name": "mathjax-angular-project",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "watch": "ng build --watch --configuration development",
     "test": "jest",
     "test:coverage": "jest --coverage",
-    "build-lib": "npm install && ng build mathjax-lib",
+    "build-lib": "ng build mathjax-lib",
     "build": "run-s -n \"ng build mathjax-lib\" \"ng build -- --output-hashing=all -c={1}\" --",
     "clean": "rimraf dist",
     "wth:c-lib": "ng build mathjax-lib --watch",
@@ -24,7 +24,7 @@
     "@angular/platform-browser": "~12.1.1",
     "@angular/platform-browser-dynamic": "~12.1.1",
     "@angular/router": "~12.1.1",
-    "mathjax-angular": "0.0.1",
+    "mathjax-angular": "^1.1.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",
     "zone.js": "~0.11.4"

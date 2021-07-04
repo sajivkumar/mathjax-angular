@@ -7,22 +7,30 @@ import { MathjaxDefaultConfig, mathjax_url, RootMathjaxConfig } from './models';
   exports: [MathjaxDirective],
 })
 export class MathjaxModule {
-  constructor(moduleConfig: RootMathjaxConfig) {
+  constructor(private moduleConfig: RootMathjaxConfig) {
     //
+    this.addConfigToDocument();
     //
-    const config = document.createElement('script') as HTMLScriptElement;
+    this.addMatjaxToDocument();
+  }
+
+  private addConfigToDocument() {
     const providConfig = {
       ...MathjaxDefaultConfig,
-      ...(moduleConfig?.config ?? {}),
+      ...(this.moduleConfig?.config ?? {}),
     };
-    config.text = `MathJax = ${JSON.stringify(providConfig)}`;
-    //
-    //
     const script = document.createElement('script') as HTMLScriptElement;
     script.type = 'text/javascript';
-    script.src = moduleConfig?.src ?? mathjax_url;
+    script.text = `MathJax = ${JSON.stringify(providConfig)}`;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  private addMatjaxToDocument() {
+    const script = document.createElement('script') as HTMLScriptElement;
+    script.type = 'text/javascript';
+    script.src = this.moduleConfig?.src ?? mathjax_url;
     script.async = true;
-    //
+    document.getElementsByTagName('head')[0].appendChild(script);
   }
 
   public static forRoot(

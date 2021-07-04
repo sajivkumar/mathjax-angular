@@ -22,15 +22,7 @@ export class MathjaxDirective implements OnChanges {
   }
   //
   constructor(private el: ElementRef) {
-    if (this.mathJaxExpressions) {
-      this.mathJaxExpressions =
-        'string' === typeof this.mathJaxExpressions
-          ? (this.mathJaxExpressions as string)
-          : (<MathjaxContent>this.mathJaxExpressions).latex ||
-            (<MathjaxContent>this.mathJaxExpressions).mathml;
-    } else {
-      this.element = el.nativeElement;
-    }
+    //
     this.element = el.nativeElement;
   }
 
@@ -43,16 +35,34 @@ export class MathjaxDirective implements OnChanges {
       return;
     }
     //
-    if ((expressions.currentValue + '')?.match(isMathjax)) {
-      const filteredVal = this.fixMathjaxBugs(expressions.currentValue + '');
+    const value = this.getMathjaxContent(expressions.currentValue) + '';
+    //
+    if (value?.match(isMathjax)) {
+      const filteredVal = this.fixMathjaxBugs(value);
       this.typeset(() => {
-        this.element.innerHTML = `<div>${filteredVal}</div>`;
+        this.element.innerHTML = `<div class='jax-process'>${filteredVal}</div>`;
       });
     } else {
-      this.element.innerHTML = expressions.currentValue;
+      this.element.innerHTML = value;
     }
   }
 
+  /**
+   * find and return mathjax string from input
+   * @param expressions
+   * @returns mathjax string
+   */
+  private getMathjaxContent(expressions: MathjaxContent | string): string {
+    if (!expressions) return '';
+    else if ('string' === typeof expressions) return expressions as string;
+    else return expressions.latex ?? expressions.mathml ?? '';
+  }
+
+  /**
+   * used to fix few issues with mathjax string in angular
+   * @param  {string} jax mathjax string
+   * @returns {string} fixed string
+   */
   private fixMathjaxBugs(jax: string): string {
     return (
       jax
