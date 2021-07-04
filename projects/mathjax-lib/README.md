@@ -107,9 +107,6 @@ MathJax typesetting on load.
 ```
 In your ts component content = "`$x = {-b \\pm \\sqrt{b^2-4ac} \\over 2a}$`"
 
-## Progress
-  - [x] Creation of Library :tada:
-  - [x] Creation of this Readme :tada:
 ## Info and Help
 
 For more info and help with the mathjax library refer to [their site][1].
