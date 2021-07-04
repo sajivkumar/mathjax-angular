@@ -1,0 +1,63 @@
+{
+  "name": "mathjax-angular-project",
+  "version": "1.0.0",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "watch": "ng build --watch --configuration development",
+    "test": "jest",
+    "test:coverage": "jest --coverage",
+    "build-lib": "ng build mathjax-lib",
+    "build": "run-s -n \"ng build mathjax-lib\" \"ng build -- --output-hashing=all -c={1}\" --",
+    "clean": "rimraf dist",
+    "wth:c-lib": "ng build mathjax-lib --watch",
+    "srv-app": "wait-on dist/mathjax-lib/public-api.d.ts && run-p -r -n \"ng s -- -c={1} --port 3300 -o\" --",
+    "dev": "npm run clean && run-p -r -n \"wth:*\" \"srv-app -- {1}\" --"
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/animations": "~12.1.1",
+    "@angular/common": "~12.1.1",
+    "@angular/compiler": "~12.1.1",
+    "@angular/core": "~12.1.1",
+    "@angular/forms": "~12.1.1",
+    "@angular/platform-browser": "~12.1.1",
+    "@angular/platform-browser-dynamic": "~12.1.1",
+    "@angular/router": "~12.1.1",
+    "mathjax-angular": "^1.1.0",
+    "rxjs": "~6.6.0",
+    "tslib": "^2.2.0",
+    "zone.js": "~0.11.4"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "~12.1.1",
+    "@angular/cli": "~12.1.1",
+    "@angular/compiler-cli": "~12.1.1",
+    "@types/jest": "^26.0.23",
+    "@types/node": "^12.11.1",
+    "jest": "^27.0.6",
+    "jest-preset-angular": "^9.0.4",
+    "karma-coverage": "~2.0.3",
+    "ng-packagr": "^12.1.0",
+    "npm-run-all": "^4.1.5",
+    "typescript": "~4.3.2",
+    "wait-on": "^6.0.0"
+  },
+  "jest": {
+    "preset": "jest-preset-angular",
+    "setupFilesAfterEnv": [
+      "./projects/test-mathjax/setup-jest.ts",
+      "./projects/mathjax-lib/setup-jest.ts"
+    ],
+    "testPathIgnorePatterns": [
+      "<rootdir>/node_modules/",
+      "<rootdir>/dist/"
+    ],
+    "globals": {
+      "ts-jest": {
+        "tsConfig": "./projects/test-mathjax/tsconfig.spec.json",
+        "stringifyContentPathRegex": "\\.html$"
+      }
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "name": "mathjax-angular",
+  "version": "1.1.0",
+  "peerDependencies": {
+    "@angular/common": "^12.1.1",
+    "@angular/core": "^12.1.1"
+  },
+  "dependencies": {
+    "tslib": "^2.2.0"
+  },
+  "description": "Mathjax 3 lib for angular",
+  "author": {
+    "name": "Sajiv Kumar Velayudhan",
+    "email": "sajeevkumar@gmail.com",
+    "url": "https://www.linkedin.com/in/sajivkumar"
+  },
+  "keywords": [
+    "angular",
+    "mathjax",
+    "ngrx",
+    "mathjax3"
+  ]
+}
