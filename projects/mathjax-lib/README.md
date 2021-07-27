@@ -4,6 +4,7 @@ This plugins implements the browser version of [Mathjax v3][1] into [Angular][2]
 ***Note***:This library was generated with [Angular CLI][8] version 12.
 
 <div style="text-align:center"><a href="https://nodei.co/npm/mathjax-angular/"><img src="https://nodei.co/npm/mathjax-angular.png?downloads=true&downloadRank=true&stars=true&mini=true"/></a></div>
+
 ## Feature
 
 This library helps you implement the version 3 of Mathjax into any of your angular web application.
@@ -52,7 +53,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './src/app/app.component';
 
 /*Import*/
-import { MathjaxModule } from 'mathjax-angular';
+import { MathJaxModule } from 'mathjax-angular';
 
 /*Configuration*/
 @NgModule({
@@ -93,7 +94,7 @@ re-use the same module instance as the root module. So simply
 configure the module with the *.forChild* method.
 
 ```typescript
-import { MathjaxModule } from 'mathjax-angular';
+import { MathJaxModule } from 'mathjax-angular';
 ...
 imports: [
   MathJaxModule.forChild()
