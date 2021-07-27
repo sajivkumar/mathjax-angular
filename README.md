@@ -53,7 +53,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './src/app/app.component';
 
 /*Import*/
-import { MathjaxModule } from 'mathjax-angular';
+import { MathJaxModule } from 'mathjax-angular';
 
 /*Configuration*/
 @NgModule({
@@ -94,7 +94,7 @@ re-use the same module instance as the root module. So simply
 configure the module with the *.forChild* method.
 
 ```typescript
-import { MathjaxModule } from 'mathjax-angular';
+import { MathJaxModule } from 'mathjax-angular';
 ...
 imports: [
   MathJaxModule.forChild()
