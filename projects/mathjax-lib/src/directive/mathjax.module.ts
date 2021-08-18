@@ -12,29 +12,52 @@ import {
 })
 export class MathjaxModule {
   constructor(private moduleConfig: RootMathjaxConfig) {
-    //
-    this.addConfigToDocument();
-    //
-    this.addMatjaxToDocument();
+
+    if (!this.isMathJaxConfigScriptPresent()) {
+      this.addMathJaxConfigScriptToDocument();
+    }
+
+    if (!this.isMathJaxScriptPresent()) {
+      this.addMathJaxScriptToDocument();
+    }
   }
 
-  private addConfigToDocument() {
-    const providConfig = {
+  private addMathJaxConfigScriptToDocument() {
+
+    const mathJaxConfig = {
       ...MathjaxDefaultConfig,
       ...(this.moduleConfig?.config ?? {}),
     };
-    const script = document.createElement('script') as HTMLScriptElement;
+
+    const script = document.createElement('script');
+
+    script.id = "mathjax-config-script"
     script.type = 'text/javascript';
-    script.text = `MathJax = ${JSON.stringify(providConfig)}`;
+    script.text = `MathJax = ${JSON.stringify(mathJaxConfig)}`;
+
     document.getElementsByTagName('head')[0].appendChild(script);
   }
 
-  private addMatjaxToDocument() {
-    const script = document.createElement('script') as HTMLScriptElement;
+  private addMathJaxScriptToDocument() {
+
+    const script = document.createElement('script');
+
+    script.id = "mathjax-script";
     script.type = 'text/javascript';
     script.src = this.moduleConfig?.src ?? mathjax_url;
     script.async = true;
+
     document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  private isMathJaxConfigScriptPresent() {
+    const script = document.getElementById("mathjax-config-script")
+    return script != undefined;
+  }
+
+  private isMathJaxScriptPresent() {
+    const script = document.getElementById("mathjax-script")
+    return script != undefined;
   }
 
   public static forRoot(
@@ -45,7 +68,7 @@ export class MathjaxModule {
       providers: [{ provide: RootMathjaxConfig, useValue: config ?? {} }],
     };
   }
-  public static forChild() {
+  public static forChild(): ModuleWithProviders<MathjaxModule> {
     return {
       ngModule: MathjaxModule,
     };
