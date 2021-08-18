@@ -19,18 +19,28 @@ export class MathjaxModule {
   }
 
   private addConfigToDocument() {
+    const tagId = 'mathjax-config-script';
+    const isScript = document.getElementById(tagId);
+    if (isScript) return;
+    //
     const providConfig = {
       ...MathjaxDefaultConfig,
       ...(this.moduleConfig?.config ?? {}),
     };
     const script = document.createElement('script') as HTMLScriptElement;
+    script.id = tagId;
     script.type = 'text/javascript';
     script.text = `MathJax = ${JSON.stringify(providConfig)}`;
     document.getElementsByTagName('head')[0].appendChild(script);
   }
 
   private addMatjaxToDocument() {
+    const tagId = 'mathjax-script';
+    const isScript = document.getElementById(tagId);
+    if (isScript) return;
+    //
     const script = document.createElement('script') as HTMLScriptElement;
+    script.id = tagId;
     script.type = 'text/javascript';
     script.src = this.moduleConfig?.src ?? mathjax_url;
     script.async = true;
@@ -45,7 +55,7 @@ export class MathjaxModule {
       providers: [{ provide: RootMathjaxConfig, useValue: config ?? {} }],
     };
   }
-  public static forChild() {
+  public static forChild(): ModuleWithProviders<MathjaxModule> {
     return {
       ngModule: MathjaxModule,
     };
