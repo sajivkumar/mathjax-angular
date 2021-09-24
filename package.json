@@ -80,6 +80,9 @@
     }
   },
   "release": {
-    "pkgRoot": "dist/angular-exemplify"
+    "pkgRoot": "dist/mathjax-lib",
+    "branches": [
+      "main"
+    ]
   }
 }
