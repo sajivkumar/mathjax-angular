@@ -38,6 +38,7 @@ jobs:
           node-version: 15.x
           cache: "npm"
       - run: npm ci
+      - run: npm run build-lib
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
