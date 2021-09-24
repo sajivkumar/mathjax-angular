@@ -1,6 +1,6 @@
 {
   "name": "mathjax-angular-project",
-  "version": "1.1.1",
+  "version": "0.0.0-development",
   "description": "A quick way to implement Mathjax v3 into your Angular project!",
   "homepage": "https://github.com/sajivkumar/mathjax-angular/blob/main/README.md",
   "repository": {
@@ -22,7 +22,9 @@
     "clean": "rimraf dist",
     "wth:c-lib": "ng build mathjax-lib --watch",
     "srv-app": "wait-on dist/mathjax-lib/public-api.d.ts && run-p -r -n \"ng s -- -c={1} --port 3300 -o\" --",
-    "dev": "npm run clean && run-p -r -n \"wth:*\" \"srv-app -- {1}\" --"
+    "dev": "npm run clean && run-p -r -n \"wth:*\" \"srv-app -- {1}\" --",
+    "semantic-release": "semantic-release",
+    "commit": "git-cz"
   },
   "private": true,
   "dependencies": {
@@ -45,13 +47,15 @@
     "@angular/compiler-cli": "~12.1.1",
     "@types/jest": "^26.0.23",
     "@types/node": "^12.11.1",
+    "cz-conventional-changelog": "^3.3.0",
     "jest": "^27.0.6",
     "jest-preset-angular": "^9.0.4",
     "karma-coverage": "~2.0.3",
     "ng-packagr": "^12.1.0",
     "npm-run-all": "^4.1.5",
     "typescript": "~4.3.2",
-    "wait-on": "^6.0.0"
+    "wait-on": "^6.0.0",
+    "semantic-release": "^18.0.0"
   },
   "jest": {
     "preset": "jest-preset-angular",
@@ -69,5 +73,13 @@
         "stringifyContentPathRegex": "\\.html$"
       }
     }
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "release": {
+    "pkgRoot": "dist/angular-exemplify"
   }
 }
