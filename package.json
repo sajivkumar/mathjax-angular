@@ -24,7 +24,7 @@
     "srv-app": "wait-on dist/mathjax-lib/public-api.d.ts && run-p -r -n \"ng s -- -c={1} --port 3300 -o\" --",
     "dev": "npm run clean && run-p -r -n \"wth:*\" \"srv-app -- {1}\" --",
     "semantic-release": "semantic-release",
-    "commit": "git-cz"
+    "commit": "git add . && git-cz"
   },
   "private": true,
   "dependencies": {
