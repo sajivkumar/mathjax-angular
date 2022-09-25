@@ -1,6 +1,6 @@
 {
   "name": "mathjax-angular",
-  "version": "1.4.1",
+  "version": "2.0.1",
   "description": "A quick way to implement Mathjax v3 into your Angular project!",
   "homepage": "https://github.com/sajivkumar/mathjax-angular/blob/main/README.md",
   "repository": {
@@ -12,11 +12,11 @@
   },
   "license": "MIT",
   "peerDependencies": {
-    "@angular/common": "^12.1.1",
-    "@angular/core": "^12.1.1"
+    "@angular/common": "^14.0.0",
+    "@angular/core": "^14.0.0"
   },
   "dependencies": {
-    "tslib": "^2.2.0"
+    "tslib": "^2.3.0"
   },
   "author": {
     "name": "Sajiv Kumar Velayudhan",
