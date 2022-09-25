@@ -81,6 +81,27 @@
               ],
               "outputHashing": "all"
             },
+            "prod": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "projects/example/src/environments/environment.ts",
+                  "with": "projects/example/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
             "development": {
               "buildOptimizer": false,
               "optimization": false,
@@ -106,6 +127,9 @@
             "production": {
               "browserTarget": "testMathjax:build:production"
             },
+            "prod": {
+              "browserTarget": "testMathjax:build:prod"
+            },
             "development": {
               "browserTarget": "testMathjax:build:development"
             },
@@ -123,6 +147,5 @@
         }
       }
     }
-  },
-  "defaultProject": "testMathjax"
+  }
 }
