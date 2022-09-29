@@ -1,6 +1,6 @@
 {
   "name": "mathjax-angular-project",
-  "version": "1.0.0",
+  "version": "2.0.2",
   "description": "A quick way to implement Mathjax v3 into your Angular project!",
   "homepage": "https://github.com/sajivkumar/mathjax-angular/blob/main/README.md",
   "repository": {
@@ -38,7 +38,7 @@
     "@angular/platform-browser": "^14.2.3",
     "@angular/platform-browser-dynamic": "^14.2.3",
     "@angular/router": "^14.2.3",
-    "mathjax-angular": "^2.0.1",
+    "mathjax-angular": "^2.0.2",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
@@ -48,6 +48,7 @@
     "@angular/cli": "^14.2.3",
     "@angular/compiler-cli": "^14.2.3",
     "@types/jest": "^26.0.23",
+    "@types/mathjax": "^0.0.37",
     "@types/node": "^18.7.21",
     "cz-conventional-changelog": "^3.3.0",
     "jest": "^29.0.3",
