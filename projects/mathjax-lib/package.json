@@ -1,6 +1,6 @@
 {
   "name": "mathjax-angular",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "A quick way to implement Mathjax v3 into your Angular project!",
   "homepage": "https://github.com/sajivkumar/mathjax-angular/blob/main/README.md",
   "repository": {
