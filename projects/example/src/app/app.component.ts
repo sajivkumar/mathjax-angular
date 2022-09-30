@@ -64,4 +64,13 @@ export class AppComponent {
   //
   content11 = '--------[ The End ]--------';
   //
+  ngOnInit() {
+    setTimeout(() => {
+      console.log('s');
+      this.content = {
+        latex:
+          'After refresh : When $a \\ne 0$, there are two solutions to $\\frac{5}{9}$',
+      };
+    }, 2000);
+  }
 }

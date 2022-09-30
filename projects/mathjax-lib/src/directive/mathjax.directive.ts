@@ -48,19 +48,15 @@ export class MathjaxDirective implements OnChanges {
     }
   }
 
-  private typeset(code: () => void) {
-    if (MathJax?.startup) {
-      MathJax.startup.promise = MathJax.startup.promise
-        .then(() => {
-          code();
-          return MathJax.typesetPromise ? MathJax.typesetPromise() : null;
-        })
-        .catch((err: Error) =>
-          console.error('MathJax Typeset failed: ' + err.message)
-        );
-      return MathJax.startup.promise;
+  private typeset(code: () => void): Promise<any> {
+    if (!MathJax?.isReady) {
+      this.element.innerHTML = `<div></div>`;
+      return MathJax.promise.then(() => this.typeset(code));
     } else {
-      code();
+      MathJax.startup.promise = MathJax.startup.promise
+        .then(() => MathJax.typesetPromise(code()))
+        .catch((err: any) => console.log('Typeset failed: ' + err.message));
+      return MathJax.startup.promise;
     }
   }
 }

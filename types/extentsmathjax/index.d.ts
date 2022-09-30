@@ -1,10 +1,14 @@
 /// <reference types="mathjax" />
 
 declare namespace MathJax {
-  export const startup: Startup;
   export interface Startup {
-    promise: any;
+    promise: Promise<any>;
+    defaultReady: any;
   }
-  export const typesetPromise: () => any;
-  export const config: any;
+
+  export const startup: Startup;
+  export const typesetPromise: (_?: any) => Promise<any>;
+
+  export const promise: Promise<any>;
+  export const isReady: boolean;
 }
