@@ -30,7 +30,19 @@ export class MathjaxModule {
     const script = document.createElement('script') as HTMLScriptElement;
     script.id = tagId;
     script.type = 'text/javascript';
-    script.text = `MathJax = ${JSON.stringify(providConfig)}`;
+    script.text = `
+      MathJax = ${JSON.stringify(providConfig)};
+      MathJax.isReady = false;
+      MathJax.promise = new Promise(function (resolve, reject) {
+        MathJax.startup = {
+            ready() {
+              MathJax.isReady = true;
+              MathJax.startup.defaultReady();
+              MathJax.startup.promise.then(() => resolve());
+            }
+        };
+      });
+    `;
     document.getElementsByTagName('head')[0].appendChild(script);
   }
 
