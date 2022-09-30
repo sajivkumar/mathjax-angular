@@ -13,7 +13,7 @@ export const isMathjaxRegExp = /(?:\$|\\\(|\\\[|\\begin\{.*?})/;
 //export const isMathJax = /(?:(?:^|[-+_*/])(?:\s*-?\d+(\.\d+)?(?:[eE][+-]?\d+)?\s*))+$/;
 //
 export const mathjax_url =
-  'https://cdn.jsdelivr.net/npm/mathjax@3.0.0/es5/startup.js';
+  'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/startup.js';
 
 /**
  * config - http://docs.mathjax.org/en/latest/web/configuration.html#configuring-and-loading-mathjax
