@@ -125,16 +125,16 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "testMathjax:build:production"
+              "buildTarget": "testMathjax:build:production"
             },
             "prod": {
-              "browserTarget": "testMathjax:build:prod"
+              "buildTarget": "testMathjax:build:prod"
             },
             "development": {
-              "browserTarget": "testMathjax:build:development"
+              "buildTarget": "testMathjax:build:development"
             },
             "dev": {
-              "browserTarget": "testMathjax:build:dev"
+              "buildTarget": "testMathjax:build:dev"
             }
           },
           "defaultConfiguration": "dev"
@@ -142,7 +142,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "testMathjax:build"
+            "buildTarget": "testMathjax:build"
           }
         }
       }
