@@ -9,7 +9,8 @@ import { fixMathjaxBugs, getMathjaxContent, isMathjax } from '../utils';
 import { MathjaxContent } from '../models';
 
 @Directive({
-  selector: 'mathjax,[mathjax]',
+    selector: 'mathjax,[mathjax]',
+    standalone: false
 })
 export class MathjaxDirective implements OnChanges {
   //
